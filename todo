@@ -1,0 +1,22 @@
+LUT(c0,c1,table) -> (r0, r1)
+{
+    256 entry table (2D)
+    convert into 1D "table"
+        table[x] = ans
+    /*
+    . . . . . . . -> 8bit
+    l l l l l l l -> table0
+    m m m m m m m -> table1
+    */
+
+    separate into 2 tables of 256 4-bit entries (LSB and MSB)
+    construct polynomials with appropriate coefficients
+    blindRotate each polynomial by c0
+    sampleExtract 0th coefficients
+    constructNewPolynomial via KeySwitch
+
+    blindRotate each polynomial by c1
+    sampleExtract 0th coefficient = ans
+
+    repeat for both digits (lsb, msb)
+}
