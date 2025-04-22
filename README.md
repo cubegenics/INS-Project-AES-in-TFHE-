@@ -7,10 +7,11 @@ We have created a common function named LUT, which stands for Lookup Table, that
 
 In order to compute the lookup tables required for invoking the LUT function, we first created the standard lookup tables of size 256 (8x8) in plaintext for all the operations, followed by separating each byte value into 2 4-bit entities and then encrypting them. One of these values populates one entry of the LSB Lookup-table and the other populates one entry of the MSB Lookup-table for the operation.
 
-We wrote a standard AES implementation that uses the LUT function to perform the elementary operations like XOR, GF(256) multiplication and S-Box substitution. We created helper functions for each of the steps of AES, i.e., RoundKeyAddition, SubBytes, ShiftRows and MixColumn. We used these functions serially to create a function to perform 1 round of AES and called the function repeatedly to complete the AES encryption of the message in a fully-homomorphic fashion.
+We wrote a standard AES implementation by taking reference from https://github.com/ceceww/aes.git that uses the LUT function to perform the elementary operations like XOR, GF(256) multiplication and S-Box substitution. We created helper functions for each of the steps of AES, i.e., RoundKeyAddition, SubBytes, ShiftRows and MixColumn. We used these functions serially to create a function to perform 1 round of AES and called the function repeatedly to complete the AES encryption of the message in a fully-homomorphic fashion.
 
 The main AES code is contained in the file "encrypt.cpp" in the folder "aes-master".
 The code for the LUT is written in the file "LUT.cpp".
 The entire tfhe library referenced in the paper is used in the code and is contained in the folder "tfhe-master".
 
 The files "todo", "temp.cpp" can be ignored.
+
